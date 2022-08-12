@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-k8s-demo
+  labels:
+          app: python-k8s-demo
+spec:
+    replicas: 1
+    template:
+      metadata:
+          labels:
+                app: python-k8s-demo
+      spec:
+        containers:
+          - name: python-k8s-demo
+            image: sameergaikwad/python-k8s-demo
+            imagePullPolicy: IfNotPresent
+            ports:
+              - containerPort: 5000
+    selector:
+      matchLabels:
+        app: python-k8s-demo
